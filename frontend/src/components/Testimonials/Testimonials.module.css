@@ -1,0 +1,96 @@
+/* ===========================
+   Testimonials Section
+   Glassmorphism cards: translucent background, blur and a hairline
+   border, floating above a soft radial gold glow.
+=========================== */
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 900px;
+  height: 500px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--color-gold-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+  max-width: 46ch;
+}
+
+.heading {
+  font-size: var(--fs-h2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+/* ---------- Glass card ---------- */
+.card {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: rgba(244, 239, 228, 0.05);
+  border: 1px solid var(--color-border-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform var(--transition-base), background-color var(--transition-base);
+  animation: fadeUp 0.8s var(--ease-premium) both;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background-color: rgba(244, 239, 228, 0.08);
+}
+
+.quote {
+  font-size: var(--fs-body-lg);
+  color: var(--color-text);
+  line-height: 1.55;
+  margin-bottom: var(--space-lg);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-sm);
+}
+
+.name {
+  font-weight: 600;
+  font-size: var(--fs-small);
+}
+
+.detail {
+  font-size: var(--fs-caption);
+  color: var(--color-text-faint);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}

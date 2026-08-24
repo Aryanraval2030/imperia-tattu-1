@@ -1,0 +1,56 @@
+:root {
+  /* ---------- Color: Surfaces ----------*/
+  --color-bg: #0b0a09;          /* page background */
+  --color-bg-alt: #141210;      /* raised sections / alternating bands */
+  --color-bg-elevated: #1c1916; /* cards, inputs, elevated panels */
+  --color-bg-elevated-hover: #232019;
+
+  /* ---------- Color: Text ---------- */
+  --color-text: #f4efe4;        /* warm off-white, primary text */
+  --color-text-muted: #a89f8f;  /* secondary / supporting text */
+  --color-text-faint: #6f6759;  /* captions, fine print */
+
+  /* ---------- Color: Accents ---------- */
+  --color-gold: #c9a15d;
+  --color-gold-soft: rgba(201, 161, 93, 0.14);
+  --color-crimson: #8a2632;
+  --color-crimson-soft: rgba(138, 38, 50, 0.16);
+
+  /* ---------- Borders / Dividers ---------- */
+  --color-border: rgba(244, 239, 228, 0.09);
+  --color-border-strong: rgba(244, 239, 228, 0.18);
+
+  /* ---------- Typography ---------- */
+  --font-primary: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --fs-display: clamp(2.75rem, 6vw, 5.5rem);
+  --fs-h1: clamp(2.25rem, 4.5vw, 3.75rem);
+  --fs-h2: clamp(1.75rem, 3.2vw, 2.75rem);
+  --fs-h3: clamp(1.25rem, 2vw, 1.6rem);
+  --fs-body-lg: clamp(1.05rem, 1.4vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-caption: 0.75rem;
+
+  /* ---------- Spacing scale ---------- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 9rem;
+
+  /* ---------- Layout ---------- */
+  --container-width: 1240px;
+  --container-padding: clamp(1.25rem, 5vw, 4rem);
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+
+  /* ---------- Motion ---------- */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.25s var(--ease-premium);
+  --transition-base: 0.45s var(--ease-premium);
+  --transition-slow: 0.8s var(--ease-premium);
+}

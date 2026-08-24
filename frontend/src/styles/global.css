@@ -1,0 +1,269 @@
+@import "./variables.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; 
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden; 
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Visible keyboard focus state kept consistent across every interactive element */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* ---------- Base typography ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Shared layout primitives ---------- */
+
+/* Centered content container used by every section */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Small uppercase label used above section headings ("eyebrow" text) —
+   encodes which section of the studio's story the reader is in. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+/* Generic section vertical rhythm */
+.section {
+  padding-block: var(--space-3xl);
+  position: relative;
+}
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+/* ---------- Signature motif: the needle-line divider ----------
+   A single fine gold stroke with a needle mark that recurs between
+   sections as the studio's visual signature (see SectionDivider). */
+.needle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--color-text-faint);
+}
+
+/* ---------- Shared button styles ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2.1rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-sm);
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  background: transparent;
+  border: 2px solid #dab473;
+  color: #fff;
+
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+/* Hover Background */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: #dab473;
+  transition: top 0.4s ease;
+  z-index: -1;
+}
+
+/* Hover Effect */
+.btn-primary:hover::before {
+  top: 0;
+}
+
+.btn-primary:hover {
+  color: #111;
+  border-color: #dab473;
+}
+
+.btn-outline {
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+/* ---------- Shared keyframe animation library ----------
+   Every entrance animation on the site is one of these five —
+   applied selectively so motion always signals something, never decorates. */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.anim-fade-up {
+  animation: fadeUp 0.9s var(--ease-premium) both;
+}
+
+.anim-fade-in {
+  animation: fadeIn 1.1s var(--ease-premium) both;
+}
+
+.anim-slide-left {
+  animation: slideLeft 0.9s var(--ease-premium) both;
+}
+
+.anim-slide-right {
+  animation: slideRight 0.9s var(--ease-premium) both;
+}
+
+
+

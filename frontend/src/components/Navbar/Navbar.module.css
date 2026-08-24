@@ -1,0 +1,163 @@
+/* ===========================
+   Navbar
+   Fixed to the top of the viewport. Transparent by default so it
+   sits over the hero artwork; gains a blurred dark surface on scroll.
+=========================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    backdrop-filter var(--transition-base);
+}
+
+.scrolled {
+  background-color: rgba(11, 10, 9, 0.72);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 86px;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.logoDot {
+  color: var(--color-gold);
+}
+
+/* ---------- Desktop nav links ---------- */
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.link {
+  position: relative;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding-block: 0.3rem;
+  transition: color var(--transition-fast);
+}
+
+/* Underline hover effect */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-gold);
+  transition: width var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-text);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.mobileCta {
+  display: none;
+}
+
+.desktopCta {
+  flex-shrink: 0;
+}
+
+/* ---------- Mobile menu toggle (hamburger) ---------- */
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.menuToggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--color-text);
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.menuToggleOpen span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.menuToggleOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuToggleOpen span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .desktopCta {
+    display: none;
+  }
+
+  .menuToggle {
+    display: flex;
+  }
+
+  .links {
+    position: fixed;
+    top: 86px;
+    min-height: 60vh;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--container-padding);
+    background-color: rgba(11, 10, 9, 0.97);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-border);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
+  }
+
+  .linksOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobileCta {
+    display: inline-flex;
+    margin-top: var(--space-xs);
+  }
+}

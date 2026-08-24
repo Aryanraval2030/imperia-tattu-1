@@ -1,0 +1,169 @@
+/* ===========================
+   Contact Section
+   Left column: studio details, hours and a map placeholder.
+   Right column: the booking enquiry form.
+=========================== */
+
+.hidden {
+  opacity: 0;
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+  max-width: 46ch;
+}
+
+.heading {
+  font-size: var(--fs-h2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: var(--space-2xl);
+}
+
+/* ---------- Info column ---------- */
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.infoLabel {
+  font-size: var(--fs-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.infoValue {
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+a.infoValue:hover {
+  color: var(--color-gold);
+}
+
+.hours {
+  margin-bottom: var(--space-lg);
+}
+
+.hoursList {
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  max-width: 340px;
+}
+
+.mapPlaceholder {
+  height: 200px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border-strong);
+  background-color: var(--color-bg-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-md);
+  font-size: var(--fs-small);
+  color: var(--color-text-faint);
+}
+
+/* ---------- Form column ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-alt);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.input,
+.textarea {
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  font-size: var(--fs-small);
+  transition: border-color var(--transition-fast);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-faint);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--color-gold);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+}
+
+.successNote {
+  font-size: var(--fs-small);
+  color: var(--color-gold);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 560px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}

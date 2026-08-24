@@ -1,0 +1,122 @@
+/* ===========================
+   Hero Section
+   Full viewport-height landing area. The background image is fixed
+   in place (background-attachment: fixed) so it stays still while the
+   foreground content scrolls over it — a pure CSS parallax effect.
+=========================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ---------- Fixed parallax background ---------- */
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  /* The core parallax trick: the image is fixed to the viewport,
+     not the section, so scrolling content passes over it. */
+  background-attachment: fixed;
+}
+
+/* iOS Safari does not support background-attachment: fixed reliably —
+   fall back to normal scroll behaviour there rather than a broken effect. */
+@supports (-webkit-touch-callout: none) {
+  .heroBackground {
+    background-attachment: scroll;
+  }
+}
+
+/* Dark gradient scrim so text stays legible over any part of the image */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 10, 9, 0.55) 0%,
+    rgba(11, 10, 9, 0.72) 55%,
+    rgba(11, 10, 9, 0.96) 100%
+  );
+}
+
+/* ---------- Foreground content ---------- */
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  padding-top: 86px; /* clears the fixed navbar */
+}
+
+.headline {
+  font-size: var(--fs-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+  animation-delay: 0.1s;
+}
+
+.headlineAccent {
+  color: var(--color-gold);
+  font-style: normal;
+}
+
+.subtitle {
+  font-size: var(--fs-body-lg);
+  color: var(--color-text-muted);
+  max-width: 46ch;
+  margin-bottom: var(--space-lg);
+  animation-delay: 0.25s;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  animation-delay: 0.4s;
+}
+
+/* ---------- Scroll cue ---------- */
+.scrollCue {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-caption);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  animation: float 3s var(--ease-premium) infinite;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, var(--color-gold), transparent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .content {
+    padding-top: 70px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .scrollCue {
+    display: none;
+  }
+}
