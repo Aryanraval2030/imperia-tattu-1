@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import AdminLogin from "../AdminLogin/AdminLogin.jsx";
+import AlertPopup from "../AlertPopup/AlertPopup";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -12,10 +13,15 @@ const NAV_LINKS = [
 
 function Navbar() {
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
-  // Tracks whether the page has been scrolled past the hero threshold
   const [isScrolled, setIsScrolled] = useState(false);
-  // Tracks whether the mobile nav drawer is open
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Alert Popup state
+  const [alertData, setAlertData] = useState({
+    isOpen: false,
+    type: "success",
+    title: "",
+    message: "",
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +31,6 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close the mobile menu whenever a link is clicked
   const handleLinkClick = () => setIsMenuOpen(false);
 
   return (
@@ -36,7 +41,7 @@ function Navbar() {
           IMPERIA<span className={styles.logoDot}>.</span>
         </a>
 
-        {/* Primary navigation links (desktop) */}
+        {/* Primary navigation links */}
         <nav
           className={`${styles.links} ${isMenuOpen ? styles.linksOpen : ""}`}
         >
@@ -51,7 +56,7 @@ function Navbar() {
             </a>
           ))}
 
-          {/* CTA shown inside the mobile drawer as well */}
+          {/* Mobile CTA */}
           <a
             href="#contact"
             className={`btn btn-primary ${styles.mobileCta}`}
@@ -59,7 +64,8 @@ function Navbar() {
           >
             Book Appointment
           </a>
-          {/* Admin Login Button */}
+
+          {/* Admin Login */}
           <button
             type="button"
             className={`btn btn-primary ${styles.desktopCta}`}
@@ -69,9 +75,11 @@ function Navbar() {
           </button>
         </nav>
 
-        {/* Hamburger toggle for mobile */}
+        {/* Hamburger */}
         <button
-          className={`${styles.menuToggle} ${isMenuOpen ? styles.menuToggleOpen : ""}`}
+          className={`${styles.menuToggle} ${
+            isMenuOpen ? styles.menuToggleOpen : ""
+          }`}
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           <span></span>
@@ -79,9 +87,28 @@ function Navbar() {
           <span></span>
         </button>
       </div>
+
+      {/* Admin Login Popup */}
       {isAdminLoginOpen && (
-        <AdminLogin onClose={() => setIsAdminLoginOpen(false)} />
+        <AdminLogin
+          onClose={() => setIsAdminLoginOpen(false)}
+          showAlert={(data) => setAlertData(data)}
+        />
       )}
+
+      {/* Alert Popup */}
+      <AlertPopup
+        isOpen={alertData.isOpen}
+        type={alertData.type}
+        title={alertData.title}
+        message={alertData.message}
+        onClose={() =>
+          setAlertData((prev) => ({
+            ...prev,
+            isOpen: false,
+          }))
+        }
+      />
     </header>
   );
 }

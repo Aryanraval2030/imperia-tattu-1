@@ -1,0 +1,225 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.modal {
+  width: min(100%, 440px);
+
+  padding: 2rem;
+
+  background: rgba(18, 17, 15, 0.96);
+
+  border: 1px solid var(--color-border);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  animation: modalIn 0.25s ease;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+
+  color: var(--color-gold);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0.55rem 0 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.9rem;
+}
+
+.closeButton {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-muted);
+
+  background: transparent;
+
+  border: 1px solid var(--color-border);
+
+  font-size: 1.4rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.closeButton:hover {
+  color: var(--color-text);
+  border-color: var(--color-gold);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.field label {
+  color: var(--color-text);
+
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.field input,
+.field select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 0.85rem 0.95rem;
+
+  color: var(--color-text);
+
+  background: rgba(255, 255, 255, 0.035);
+
+  border: 1px solid var(--color-border);
+
+  outline: none;
+
+  font: inherit;
+
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.field input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--color-gold);
+
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.field select {
+  cursor: pointer;
+}
+
+.field select option {
+  background: #12110f;
+  color: var(--color-text);
+}
+
+.addButton {
+  width: 100%;
+
+  margin-top: 0.35rem;
+
+  padding: 0.9rem 1rem;
+
+  color: var(--color-text);
+
+  background: var(--color-gold);
+
+  border: none;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.addButton:hover {
+  opacity: 0.9;
+
+  transform: translateY(-1px);
+}
+
+.addButton:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}

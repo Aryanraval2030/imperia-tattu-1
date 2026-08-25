@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "./ AdminLogin.module.css";
+// import AlertPopup from "../AlertPopup/AlertPopup";
 import { adminLogin } from "../../api/api";
 
-function AdminLogin({ onClose }) {
+function AdminLogin({ onClose, showAlert }) {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -18,15 +19,27 @@ function AdminLogin({ onClose }) {
 
       const data = await adminLogin(formData);
 
-      localStorage.setItem("token", data.data.token);
+      // Store JWT token in cookie
+      document.cookie = `token=${data.data.token}; path=/; max-age=${30 * 24 * 60 * 60}; SameSite=Lax`;
+
+      // Store admin information
       localStorage.setItem("admin", JSON.stringify(data.data));
 
-      alert("Login Successful ✅");
-
       onClose();
-    }
-     catch (error) {
-      alert(error.message);
+
+      showAlert({
+        isOpen: true,
+        type: "success",
+        title: "Login Successful",
+        message: "Welcome back! You have successfully logged in.",
+      });
+    } catch (error) {
+      showAlert({
+        isOpen: true,
+        type: "error",
+        title: "Login Failed",
+        message: error.message,
+      });
     } finally {
       setLoading(false);
     }
@@ -88,8 +101,6 @@ function AdminLogin({ onClose }) {
                 placeholder="Enter password"
               />
 
-
-
               <button
                 type="button"
                 className={styles.passwordToggle}
@@ -108,13 +119,20 @@ function AdminLogin({ onClose }) {
           </button>
         </form>
       </div>
+      {/* <AlertPopup
+        isOpen={alertData.isOpen}
+        type={alertData.type}
+        title={alertData.title}
+        message={alertData.message}
+        onClose={() =>
+          setAlertData((prev) => ({
+            ...prev,
+            isOpen: false,
+          }))
+        }
+      /> */}
     </div>
   );
 }
 
 export default AdminLogin;
-
-
-
-
-

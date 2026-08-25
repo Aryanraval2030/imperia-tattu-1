@@ -8,6 +8,7 @@ import contactRoutes from "./routes/contactRoutes.js";
 import tattooRoutes from "./routes/tattooRoutes.js";
 import testimonialRoutes from "./routes/testimonialRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
+import portfolioRoutes from "./routes/portfolioRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/tattoos", tattooRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 app.use("/api/newsletter", newsletterRoutes);
+app.use("/api/portfolio", portfolioRoutes);
 
 // Server Start
 const serverStart = async () => {

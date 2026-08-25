@@ -1,0 +1,345 @@
+/* ===============================
+   Edit Portfolio Popup
+================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+/* ===============================
+   Modal
+================================ */
+
+.modal {
+  width: min(100%, 440px);
+  padding: 2rem;
+  height: 90vh;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  background: rgba(18, 17, 15, 0.96);
+  border: 1px solid var(--color-border);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  animation: modalIn 0.25s ease;
+}
+
+/* ===============================
+   Header
+================================ */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+
+  color: var(--color-gold);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0.55rem 0 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   Close Button
+================================ */
+
+.closeButton {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-muted);
+
+  background: transparent;
+
+  border: 1px solid var(--color-border);
+
+  font-size: 1.4rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.closeButton:hover {
+  color: var(--color-text);
+
+  border-color: var(--color-gold);
+}
+
+/* ===============================
+   Form
+================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.25rem;
+}
+
+/* ===============================
+   Field
+================================ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.field label {
+  color: var(--color-text);
+
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* ===============================
+   Input + Select
+================================ */
+
+.field input,
+.field select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 0.85rem 0.95rem;
+
+  color: var(--color-text);
+
+  background: rgba(255, 255, 255, 0.035);
+
+  border: 1px solid var(--color-border);
+
+  outline: none;
+
+  font: inherit;
+
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.field input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--color-gold);
+
+  background: rgba(255, 255, 255, 0.055);
+}
+
+/* ===============================
+   Select
+================================ */
+
+.field select {
+  cursor: pointer;
+}
+
+.field select option {
+  color: #14120f;
+
+  background: #fff;
+}
+
+/* ===============================
+   Image Preview
+================================ */
+
+.preview {
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border: 1px solid var(--color-border);
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/* ===============================
+   Action Buttons
+================================ */
+
+.actions {
+  display: flex;
+
+  gap: 0.8rem;
+
+  margin-top: 0.35rem;
+}
+
+.cancelButton,
+.updateButton {
+  flex: 1;
+
+  padding: 0.9rem 1rem;
+
+  font: inherit;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+/* ===============================
+   Cancel
+================================ */
+
+.cancelButton {
+  color: var(--color-text);
+
+  background: transparent;
+
+  border: 1px solid var(--color-border);
+}
+
+.cancelButton:hover {
+  color: var(--color-gold);
+
+  border-color: var(--color-gold);
+}
+
+/* ===============================
+   Update
+================================ */
+
+.updateButton {
+  color: #14120f;
+
+  background: var(--color-gold);
+
+  border: 1px solid var(--color-gold);
+}
+
+.updateButton:hover {
+  opacity: 0.9;
+
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   Disabled
+================================ */
+
+.cancelButton:disabled,
+.updateButton:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* ===============================
+   Animation
+================================ */
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===============================
+   Mobile
+================================ */
+
+@media (max-width: 500px) {
+  .overlay {
+    padding: 1rem;
+  }
+
+  .modal {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .cancelButton,
+  .updateButton {
+    width: 100%;
+  }
+}

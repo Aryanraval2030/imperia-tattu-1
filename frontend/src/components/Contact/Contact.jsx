@@ -6,6 +6,7 @@
 import { useState } from "react";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import styles from "./Contact.module.css";
+import emailjs from "@emailjs/browser";
 
 const HOURS = [
   { day: "Monday — Friday", time: "11:00 AM – 8:00 PM" },
@@ -29,10 +30,14 @@ function Contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     setLoading(true);
     setError("");
-    
+
     try {
+      // =========================
+      // 1. Save enquiry in DB
+      // =========================
       const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
         method: "POST",
         headers: {
@@ -42,21 +47,45 @@ function Contact() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          tattooIdea: formData.message, // Mapping message to tattooIdea
-          message: formData.message
+          tattooIdea: formData.message,
+          message: formData.message,
         }),
       });
 
       const data = await response.json();
 
-      if (data.success) {
-        setIsSubmitted(true);
-        setFormData(INITIAL_FORM);
-      } else {
+      if (!data.success) {
         setError(data.message || "Something went wrong. Please try again.");
+        return;
       }
+
+      // =========================
+      // 2. Send email to owner
+      // =========================
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        },
+      );
+
+      // =========================
+      // 3. Success
+      // =========================
+      setIsSubmitted(true);
+      setFormData(INITIAL_FORM);
     } catch (err) {
-      setError("Failed to connect to the server. Please try again later.");
+      console.error(err);
+
+      setError(
+        "Your enquiry was saved, but we couldn't send the email. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
