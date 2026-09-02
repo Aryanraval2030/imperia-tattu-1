@@ -4,15 +4,12 @@ const TattooSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-
       required: [true, "Please provide a title"],
-
       trim: true,
     },
 
     category: {
       type: String,
-
       required: [true, "Please provide a category"],
 
       enum: [
@@ -27,13 +24,11 @@ const TattooSchema = new mongoose.Schema(
 
     image: {
       type: String,
-
       required: [true, "Please provide an image URL"],
     },
 
     description: {
       type: String,
-
       trim: true,
     },
 

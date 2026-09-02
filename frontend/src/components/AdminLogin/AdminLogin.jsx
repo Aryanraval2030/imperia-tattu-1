@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./ AdminLogin.module.css";
-// import AlertPopup from "../AlertPopup/AlertPopup";
-import { adminLogin } from "../../api/api";
+import { adminLogin } from "../../api/api.js";
 
 function AdminLogin({ onClose, showAlert }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,12 +15,9 @@ function AdminLogin({ onClose, showAlert }) {
 
     try {
       setLoading(true);
-
       const data = await adminLogin(formData);
-
       // Store JWT token in cookie
       document.cookie = `token=${data.data.token}; path=/; max-age=${30 * 24 * 60 * 60}; SameSite=Lax`;
-
       // Store admin information
       localStorage.setItem("admin", JSON.stringify(data.data));
 
@@ -90,7 +86,6 @@ function AdminLogin({ onClose, showAlert }) {
           </div>
           <div className={styles.field}>
             <label htmlFor="admin-password">Password</label>
-
             <div className={styles.passwordWrapper}>
               <input
                 id="admin-password"
@@ -119,18 +114,6 @@ function AdminLogin({ onClose, showAlert }) {
           </button>
         </form>
       </div>
-      {/* <AlertPopup
-        isOpen={alertData.isOpen}
-        type={alertData.type}
-        title={alertData.title}
-        message={alertData.message}
-        onClose={() =>
-          setAlertData((prev) => ({
-            ...prev,
-            isOpen: false,
-          }))
-        }
-      /> */}
     </div>
   );
 }

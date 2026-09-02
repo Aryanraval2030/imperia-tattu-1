@@ -5,9 +5,7 @@ const BASE_URL = "http://localhost:5000/api";
 // =====================================
 export const getTokenFromCookie = () => {
   const cookies = document.cookie.split("; ");
-
   const tokenCookie = cookies.find((cookie) => cookie.startsWith("token="));
-
   return tokenCookie ? tokenCookie.split("=")[1] : null;
 };
 
@@ -49,11 +47,9 @@ export const adminLogin = async (loginData) => {
 // =====================================
 export const getPortfolios = async () => {
   const response = await fetch(`${BASE_URL}/portfolio`);
-
   if (!response.ok) {
     throw new Error("Failed to fetch portfolio items");
   }
-
   const data = await response.json();
 
   return data.data;
@@ -68,13 +64,10 @@ export const createPortfolio = async (portfolioData) => {
     headers: getAuthHeaders(),
     body: JSON.stringify(portfolioData),
   });
-
   const data = await response.json();
-
   if (!response.ok) {
     throw new Error(data.message || "Failed to create portfolio");
   }
-
   return data;
 };
 
@@ -105,12 +98,9 @@ export const deletePortfolio = async (id) => {
     method: "DELETE",
     headers: getAuthHeaders(),
   });
-
   const data = await response.json();
-
   if (!response.ok) {
     throw new Error(data.message || "Failed to delete portfolio");
   }
-
   return data;
 };

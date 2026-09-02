@@ -5,8 +5,6 @@ import Tattoo from "../models/Tattoo.js";
 // @access  Public
 const getTattoos = async (req, res) => {
   try {
-
-    
     const tattoos = await Tattoo.find({});
     res.json({
       success: true,

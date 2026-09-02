@@ -89,7 +89,7 @@ function Navbar() {
       </div>
 
       {/* Admin Login Popup */}
-      {isAdminLoginOpen && (
+       {isAdminLoginOpen && (
         <AdminLogin
           onClose={() => setIsAdminLoginOpen(false)}
           showAlert={(data) => setAlertData(data)}

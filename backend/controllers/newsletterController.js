@@ -37,7 +37,6 @@ const subscribeNewsletter = async (req, res) => {
 const getSubscribers = async (req, res) => {
   try {
     const subscribers = await Newsletter.find({}).sort({ createdAt: -1 });
-
     res.json({
       success: true,
       data: subscribers,

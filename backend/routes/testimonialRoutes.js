@@ -1,21 +1,17 @@
-import express from 'express';
-
+import express from "express";
 import {
   getTestimonials,
   createTestimonial,
   updateTestimonial,
-  deleteTestimonial
-} from '../controllers/testimonialController.js';
-
-import { protect } from '../middleware/auth.js';
+  deleteTestimonial,
+} from "../controllers/testimonialController.js";
+import { protect } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.route('/')
-  .get(getTestimonials)
-  .post(protect, createTestimonial);
-
-router.route('/:id')
+router.route("/").get(getTestimonials).post(protect, createTestimonial);
+router
+  .route("/:id")
   .put(protect, updateTestimonial)
   .delete(protect, deleteTestimonial);
 

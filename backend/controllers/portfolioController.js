@@ -6,7 +6,6 @@ import Portfolio from "../models/portfolioModel.js";
 export const createPortfolio = async (req, res) => {
   try {
     const { title, category, image } = req.body;
-
     const portfolio = await Portfolio.create({
       title,
       category,
